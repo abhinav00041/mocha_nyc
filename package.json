@@ -1,0 +1,100 @@
+{
+  "name": "pricingPlans",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Microservice to manage pricing plans of a SaaS based architecture",
+  "keywords": [],
+  "author": "Ashutosh Tripathi",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "build:transpile": "babel src/ -d dist",
+    "build:copy-resources": "cp -r config dist && cp -r src/api/swagger dist/api && cp src/version.yml dist",
+    "build": "rimraf dist && npm run build:transpile && npm run build:copy-resources",
+    "devstart": "nodemon ./src/index.js --exec babel-node",
+    "start": "node dist/index.js",
+    "lint": "standard --verbose | snazzy",
+    "lint:fix": "standard --fix --verbose | snazzy",
+    "test": "nyc mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:agatsa1/pricingPlans.git"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "connect-timeout": "^1.8.0",
+    "cors": "^2.8.1",
+    "express": "^4.14.1",
+    "joi": "^10.2.2",
+    "jsonapi-serializer": "^3.5.3",
+    "mongoose": "^4.10.4",
+    "mongoose-rename-id": "^1.0.2",
+    "nedb": "^1.8.0",
+    "path": "^0.12.7",
+    "randomstring": "^1.1.5",
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1",
+    "swagger-express-mw": "^0.1.0",
+    "swagger-ui": "^2.2.10",
+    "yamljs": "^0.2.8"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.22.1",
+    "babel-preset-es2016-node4": "^6.0.1",
+    "babel-preset-es2017": "^6.22.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "husky": "^0.13.1",
+    "mocha": "^3.2.0",
+    "mocha-duplicate-reporter": "^0.2.1",
+    "mocha-multi": "^0.9.0",
+    "mocha-sonar-generic-test-coverage": "0.0.1",
+    "nock": "^9.0.2",
+    "node-mocks-http": "^1.6.1",
+    "nodemon": "^1.11.0",
+    "nyc": "^10.1.2",
+    "pact": "^1.0.0",
+    "rimraf": "^2.5.4",
+    "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0",
+    "snazzy": "^6.0.0",
+    "standard": "^8.6.0",
+    "unit.js": "^2.0.0"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach"
+    ]
+  },
+  "nyc": {
+    "all": false,
+    "report-dir": "./coverage",
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/server.js",
+      "src/index.js"
+    ],
+    "require": [
+      "babel-core/register"
+    ],
+    "cache": true,
+    "check-coverage": false,
+    "branches": 80,
+    "functions": 80,
+    "lines": 80,
+    "statements": 80
+  }
+}

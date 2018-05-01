@@ -1,0 +1,275 @@
+{
+  "POST_DeployWorkflow_Success": {
+    "request": {
+      "swagger": {
+        "params": {
+          "workflow": {
+            "value": {
+              "name": "TestWorkflow",
+              "description": "This is a test workflow",
+              "steps": [
+                {
+                  "type": "form",
+                  "formId": "formId",
+                  "name": "Test Form",
+                  "description": "Test Form"
+                },
+                {
+                  "type": "email",
+                  "name": "Test Email",
+                  "description": "Test Email",
+                  "to": "test@test.com",
+                  "subject": "Test"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "camundaResponse": {
+      "links": [
+        {
+          "method": "GET",
+          "href": "http://host:port/rest/deployment/000",
+          "rel": "self"
+        }
+      ],
+      "id": "000",
+      "name": "TestWorkflow",
+      "source": "pathfinder",
+      "deploymentTime": "2017-02-27T18:23:56",
+      "tenantId": null
+    },
+    "response": {
+      "processDef": {
+        "name": "TestWorkflow",
+        "description": "This is a test workflow",
+        "steps": [
+          {
+            "type": "form",
+            "formId": "formId",
+            "name": "Test Form",
+            "description": "Test Form"
+          },
+          {
+            "type": "email",
+            "name": "Test Email",
+            "description": "Test Email",
+            "to": "test@test.com",
+            "subject": "Test"
+          }
+        ]
+      },
+      "deploymentId": "000",
+      "deploymentTime": "2017-02-27T18:23:56",
+      "suspended": false,
+      "_id": "1234"
+    }
+  },
+  "POST_DeployWorkflow_CamundaFails": {
+    "request": {
+      "swagger": {
+        "params": {
+          "workflow": {
+            "value": {
+              "name": "TestWorkflow",
+              "description": "This is a test workflow",
+              "steps": [
+                {
+                  "type": "form",
+                  "formId": "formId",
+                  "name": "Test Form",
+                  "description": "Test Form"
+                },
+                {
+                  "type": "email",
+                  "name": "Test Email",
+                  "description": "Test Email",
+                  "to": "test@test.com",
+                  "subject": "Test"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "camundaResponse": {
+      "error": {
+        "timestamp": 1234,
+        "status": 405,
+        "error": "Method Not Allowed",
+        "message": "Method Not Allowed",
+        "path": "/rest/deployment/somethingElse"
+      },
+      "statusCode": 405
+    }
+  },
+  "POST_DeployWorkflow_FormIDNotFound": {
+    "request": {
+      "swagger": {
+        "params": {
+          "workflow": {
+            "value": {
+              "name": "TestWorkflow",
+              "description": "This is a test workflow",
+              "steps": [
+                {
+                  "type": "form",
+                  "formId": "formId",
+                  "name": "Test Form",
+                  "description": "Test Form"
+                },
+                {
+                  "type": "email",
+                  "name": "Test Email",
+                  "description": "Test Email",
+                  "to": "test@test.com",
+                  "subject": "Test"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "GET_ListWorkflow_Success": {
+    "dbResponse": {
+      "processDef": {
+        "name": "TestWorkflow",
+        "description": "This is a test workflow",
+        "steps": [
+          {
+            "type": "form",
+            "formId": "formId",
+            "name": "Test Form",
+            "description": "Test Form"
+          },
+          {
+            "type": "email",
+            "name": "Test Email",
+            "description": "Test Email",
+            "to": "test@test.com",
+            "subject": "Test"
+          }
+        ]
+      },
+      "deploymentId": "000",
+      "deploymentTime": "2017-02-27T18:23:56",
+      "suspended": false,
+      "_id": "1234"
+    }
+  },
+  "GET_WorkflowByID_Success": {
+    "request": {
+      "swagger": {
+        "params": {
+          "id": {
+            "value": "1234"
+          }
+        }
+      }
+    },
+    "dbResponse": {
+      "processDef": {
+        "name": "TestWorkflow",
+        "description": "This is a test workflow",
+        "steps": [
+          {
+            "type": "form",
+            "formId": "formId",
+            "name": "Test Form",
+            "description": "Test Form"
+          },
+          {
+            "type": "email",
+            "name": "Test Email",
+            "description": "Test Email",
+            "to": "test@test.com",
+            "subject": "Test"
+          }
+        ]
+      },
+      "deploymentId": "000",
+      "deploymentTime": "2017-02-27T18:23:56",
+      "suspended": false,
+      "_id": "1234"
+    }
+  },
+
+    "GET_All_Tasks_List_Success":{
+    "camundaResponse":{
+      "id": "0000",
+      "name": null,
+      "assignee": null,
+      "created": "2017-03-02T09:33:56",
+      "description": null,
+      "executionId": "100",
+      "owner": null,
+      "parentTaskId": null,
+      "priority": 50,
+      "processDefinitionId": "TestWorkflow:1:21",
+      "processInstanceId": "002",
+      "taskDefinitionKey": "UserTask_YP75CG3",
+      "suspended": false,
+      "formKey": "f36GQPqp892AiNA5",
+      "tenantId": null
+
+    }
+  },
+    "Post_Start_Process_Success": {
+      "request":{
+        "swagger":{
+          "params":{
+            "id":{
+              "value":"1234"
+            },
+            "processStartBody":{
+              "value":   {
+                "variables": [
+                  {
+                    "key": "testvariable1",
+                    "value": "testvalue1",
+                    "type": "string"
+                  },
+                  {
+                    "key": "testvariable2",
+                    "value": "testvalue2",
+                    "type": "string"
+                  }
+                ]
+              }
+
+            }
+          }
+
+        }
+      },
+      "camundaResponse":{
+        "startTask":{
+          "links": [
+            {
+              "method": "GET",
+              "href": "http://192.168.99.100:9000/rest/process-instance/000",
+              "rel": "self"
+            }
+          ],
+          "id": "0001",
+          "definitionId": "TestWorkflow:1:21",
+          "businessKey": null,
+          "caseInstanceId": null,
+          "ended": false,
+          "suspended": false,
+          "tenantId": null
+
+        }
+
+      },
+      "dbResponse":"1234"
+    }
+
+
+
+}

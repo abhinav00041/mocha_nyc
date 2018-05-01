@@ -1,0 +1,288 @@
+{
+  "swagger": "2.0",
+  "info": {
+     "version": "0.0.1",
+     "title": "Flexin Login API",
+     "contact": {
+        "email": "a.b.chaudhary0001@gmail.com"
+     },
+     "license": {
+        "name": "Copyright Abhinav 2018. All rights reserved."
+     }
+  },
+  "host": "localhost:4000",
+  "basePath": "/api",
+  "schemes": [
+     "http",
+     "https"
+  ],
+  "consumes": [
+     "application/json"
+  ],
+  "produces": [
+     "application/json"
+  ],
+  "tags": [
+     {
+        "name": "Account APIs",
+        "description": "APIs which are used to manage an account."
+     }
+  ],
+  "paths": {
+     "/user": {
+        "x-swagger-router-controller": "account",
+        "get": {
+           "tags": [
+              "Account APIs"
+           ],
+           "description": "Returns the list of all users with role available",
+           "operationId": "getAll",
+           "responses": {
+              "200": {
+                 "description": "Success",
+                 "schema": {
+                    "$ref": "#/definitions/userDocument"
+                 }
+              },
+              "203": {
+                 "description": "Non Authoritative Information",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "204": {
+                 "description": "No Content Found",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "401": {
+                 "description": "Unauthorize",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "408": {
+                 "description": "Timeout",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "500": {
+                 "description": "Internal Server Error",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              }
+           }
+        },
+        "post": {
+           "tags": [
+              "Account APIs"
+           ],
+           "description": "method to create new user",
+           "operationId": "createUser",
+           "parameters": [
+              {
+                 "name": "user",
+                 "in": "body",
+                 "description": "user to be created will be sent in body",
+                 "required": true,
+                 "schema": {
+                    "$ref": "#/definitions/userDocument"
+                 }
+              }
+           ],
+           "responses": {
+              "200": {
+                 "description": "Success",
+                 "schema": {
+                    "$ref": "#/definitions/userDocument"
+                 }
+              },
+              "203": {
+                 "description": "Non Authoritative Information",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "204": {
+                 "description": "No Content Found",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "401": {
+                 "description": "Unauthorize",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "408": {
+                 "description": "Timeout",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "500": {
+                 "description": "Internal Server Error",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              }
+           }
+        }
+     },
+     "/loginUser": {
+        "x-swagger-router-controller": "account",
+        "get": {
+           "tags": [
+              "Account APIs"
+           ],
+           "description": "Returns the login response of a perticular user",
+           "operationId": "getUser",
+           "parameters": [
+              {
+                 "name": "Authorization",
+                 "in": "header",
+                 "description": "user name and password in the basic authentication",
+                 "required": true,
+                 "type": "string"
+              }
+           ],
+           "responses": {
+              "200": {
+                 "description": "Success",
+                 "schema": {
+                    "$ref": "#/definitions/userDocument"
+                 }
+              },
+              "203": {
+                 "description": "Non Authoritative Information",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "204": {
+                 "description": "No Content Found",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "401": {
+                 "description": "Unauthorize",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "408": {
+                 "description": "Timeout",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              },
+              "500": {
+                 "description": "Internal Server Error",
+                 "schema": {
+                    "$ref": "#/definitions/errorDocument"
+                 }
+              }
+           }
+        }
+     },
+     "/swagger": {
+        "x-swagger-pipe": "swagger_raw"
+     }
+  },
+  "definitions": {
+     "userDocument": {
+        "type": "object",
+        "properties": {
+           "data": {
+              "type": "array",
+              "items": {
+                 "type": "object",
+                 "required": [
+                    "type",
+                    "id",
+                    "attributes"
+                 ],
+                 "properties": {
+                    "type": {
+                       "type": "string"
+                    },
+                    "id": {
+                       "type": "string"
+                    },
+                    "attributes": {
+                       "type": "object",
+                       "properties": {
+                          "username": {
+                             "type": "string"
+                          },
+                          "password": {
+                             "type": "string"
+                          },
+                          "name": {
+                             "type": "string"
+                          },
+                          "admin": {
+                             "type": "boolean"
+                          }
+                       }
+                    }
+                 }
+              }
+           },
+           "meta": {
+              "type": "object"
+           },
+           "include": {
+              "type": "object"
+           }
+        }
+     },
+     "errorDocument": {
+        "title": "error",
+        "type": "object",
+        "properties": {
+           "errors": {
+              "type": "array",
+              "items": {
+                 "type": "object",
+                 "properties": {
+                    "title": {
+                       "type": "string"
+                    },
+                    "code": {
+                       "type": "string"
+                    },
+                    "detail": {
+                       "type": "string"
+                    },
+                    "source": {
+                       "type": "object",
+                       "properties": {
+                          "pointer": {
+                             "type": "string"
+                          },
+                          "paramter": {
+                             "type": "string"
+                          }
+                       }
+                    },
+                    "meta": {
+                       "type": "object"
+                    }
+                 },
+                 "required": [
+                    "title",
+                    "code",
+                    "detail"
+                 ]
+              }
+           }
+        }
+     }
+  }
+}

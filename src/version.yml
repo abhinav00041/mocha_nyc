@@ -1,0 +1,5 @@
+build:
+  name: ${project.build.finalName}
+  date: ${build.timestamp}
+  number: ${env.BUILD_NUMBER}
+  commit: ${env.GIT_COMMIT}
